@@ -48,8 +48,11 @@ for image in images:
   try:
     image.click()
     time.sleep(2)  # 이미지 가져올 때까지 2초 delay
-    imgUrl = driver.find_element(By.XPATH, "/html/body/div[2]/c-wiz/div[3]/div[2]/div[3]/div[6]/div/div/div[3]/div[2]/c-wiz/div[2]/div[1]/div[1]/div[2]/div/a/img").get_attribute("src")  # 선택한 큰 이미지 src 주소 가져오기
-    urllib.request.urlretrieve(imgUrl, str(count) + ".jpg")  # 해당 src 이미지 다운
+    imgUrl = driver.find_element(By.CSS_SELECTOR, ".n3VNCb").get_attribute("src")  # 선택한 큰 이미지 src 주소 가져오기
+    opener=urllib.request.build_opener()
+    opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+    urllib.request.install_opener(opener)
+    urllib.request.urlretrieve(imgUrl, str(count) + ".jpg")
     count = count + 1
   except:
     pass
