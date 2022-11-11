@@ -39,7 +39,7 @@ while True:
 
 
 
-images = driver.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")[0].click()   # 가져올 html 태그 (rg_i Q4LuWd)
+images = driver.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")   # 가져올 html 태그 (rg_i Q4LuWd)
 
 
 count = 1    # 이미지 파일명 설정용 변수
