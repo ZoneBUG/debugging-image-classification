@@ -8,26 +8,22 @@ import time
 
 # 저장 경로
 current_path = os.getcwd()
-# 원하는 검색어 및 이미지 개수
-inserturl = input("검색어를 입력하세요 : ").strip()
 
 driver = webdriver.Chrome('chromedriver')
 driver.implicitly_wait(3)
 driver.get("https://www.google.co.kr/imghp?hl=ko")
 elem = driver.find_element(By.NAME, "q")                 # 가져올 html 태그 (q)
-elem.send_keys("그리마")                              # 검색어 입력
+elem.send_keys("그리마")                                 # 검색어 입력
 elem.send_keys(Keys.RETURN)      
 
 SCROLL_PAUSE_TIME = 1
 
 # 현재 브라우저의 높이
 last_height = driver.execute_script(
-    "return document.body.scrollHeight")  # 브라우져 높이를 확인 가능(자바스크립트)
+    "return document.body.scrollHeight")  # 브라우져 높이를 확인
 
-# 검색 화면에서 스크롤을 끝까지 내려 관련 이미지 전부를 가져옵니다.
 while True:
     # Scroll down to bottom
-    # 브라우져 끝까지 스크롤을 내리겠다.
     driver.execute_script(
         "window.scrollTo(0, document.body.scrollHeight);")
 
@@ -46,17 +42,10 @@ while True:
             break
     last_height = new_height
 
-# 복수 이미지 정보를 가져옵니다 list 형  * find_elements 를 사용합니다.
+# 복수 이미지 정보를 가져오기
 images = driver.find_elements(By.CSS_SELECTOR, ".rg_i.Q4LuWd")
 
-# 폴더 명도 검색어랑 동일하게 세팅 !
-folder_name = inserturl
-
-# 폴더 있는지 없는지 확인 후 생성
-if not os.path.isdir(folder_name):
-    os.mkdir(folder_name)
-
-# 이미지 다운로드 !
+# 이미지 다운로드
 count = 1 
 for image in images:
   try:
