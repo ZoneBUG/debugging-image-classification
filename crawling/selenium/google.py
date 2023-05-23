@@ -8,11 +8,7 @@ import urllib.request
 driver = webdriver.Chrome()
 driver.get("https://www.google.co.kr/imghp?hl=ko")       # 검색창 주소로 이동
 elem = driver.find_element(By.NAME, "q")                 # 가져올 html 태그 (q)
-<<<<<<< HEAD
-elem.send_keys("그리마")                              # 검색어 입력
-=======
 elem.send_keys("cockroach")                              # 검색어 입력
->>>>>>> d21dfbf3ac0ce0dd14edb55a06c240957d4eec0b
 elem.send_keys(Keys.RETURN)                              # 겁색어 입력 후 엔터 처리
 
 
@@ -52,11 +48,7 @@ for image in images:
   try:
     image.click()
     time.sleep(2)  # 이미지 가져올 때까지 2초 delay
-<<<<<<< HEAD
-    imgUrl = driver.find_element(By.CSS_SELECTOR, ".r48jcc pT0Scc iPVvYb").get_attribute("src")  # 선택한 큰 이미지 src 주소 가져오기
-=======
     imgUrl = driver.find_element(By.CSS_SELECTOR, ".n3VNCb").get_attribute("src")  # 선택한 큰 이미지 src 주소 가져오기
->>>>>>> d21dfbf3ac0ce0dd14edb55a06c240957d4eec0b
     opener=urllib.request.build_opener()
     opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
     urllib.request.install_opener(opener)
